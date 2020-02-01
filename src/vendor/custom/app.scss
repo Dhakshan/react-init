@@ -1,0 +1,14 @@
+@import "bs/functions";
+@import "bs/variables";
+@import "bs/bsvariable";
+$enable-shadows: true;
+@import "bs/mixins";
+@import "app/mixins";
+@import "app/fontfamily";
+@import "app/typography";
+@import "app/common";
+
+.app{
+    background-color: $app-bg;
+    color : $app-color;
+}
