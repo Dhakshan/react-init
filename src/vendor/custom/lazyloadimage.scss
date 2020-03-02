@@ -1,0 +1,35 @@
+@import "bs/functions";
+@import "bs/variables";
+@import "bs/bsvariable";
+$enable-shadows: true;
+@import "bs/mixins";
+@import "app/mixins";
+
+
+.image-square{
+    background-color : $white;
+    display: block;
+    width: 100%;
+    padding:10px; margin:0 0 20px;
+    border:1px solid #ddd;
+    overflow: hidden;
+    @include border-radius(5px);
+    @include box-shadow(0 2px 2px rgba($black,.1));
+    .myimg{
+        @include box-shadow(0 0px 0px 10px $white);
+    }
+    .myimg,img{
+        display: block;
+        text-align: center;
+        width: 100%;
+        min-height:200px;
+    }
+    img{
+        height:auto; border: 0 none;
+        vertical-align: bottom;
+    }
+}
+.img-placeholder{
+    background-size:cover;
+    background-position: center center;
+}

@@ -23,3 +23,14 @@ export function newPromise(payload,timeout=1000){
         },timeout);
     });
 }
+
+export function scrollPosition(){
+    const config = {
+        scrollTop : document.body.scrollTop || document.documentElement.scrollTop,
+        scrollH : document.documentElement.scrollHeight,
+        clientH : document.documentElement.clientHeight,
+    }
+    config.height = config.scrollH - config.clientH;
+    config.scrolled = config.scrollTop / config.height;
+    return config;
+}

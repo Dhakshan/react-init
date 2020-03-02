@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { Formik } from 'formik';
 import * as Yup from "yup";
 import FormError from '../ui/formError/FormError';
+import {history} from '../../store/configureStore';
 
 const loginSchema = Yup.object().shape({
   email: Yup.string()
@@ -16,6 +17,9 @@ const loginSchema = Yup.object().shape({
 class LoginForm extends Component {
   constructor(props) {
     super(props);
+  }
+  goto(url){
+    history.push(url);
   }
 
   render() {
@@ -54,6 +58,9 @@ class LoginForm extends Component {
                       <button type="submit" className="button theme w">
                         <span className="spantxt">Get Inside</span>
                       </button>
+                    </div>
+                    <div className="form-group">
+                      <a href={null}>Dasboard</a>
                     </div>
                 </form>
             )}

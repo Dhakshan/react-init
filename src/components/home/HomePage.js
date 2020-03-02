@@ -28,11 +28,9 @@ class HomePage extends Component {
             body: 'bar',
             userId: 1
           }).then(()=>{
-            console.log("I am here");
             this.props.PBActions.enable({show:false});
             history.push("dashboard");
           },()=>{
-            console.log("I am error");
             this.props.PBActions.enable({show:false});
           });
       }

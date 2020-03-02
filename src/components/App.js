@@ -6,6 +6,7 @@ import PropTypes from "prop-types";
 import React from "react";
 import { hot } from "react-hot-loader";
 import PG_Dashboard from "./pages/dashboard/PG_Dashboard";
+import PG_LazyLoadImage from "./pages/lazyLoadImage/PG_LazyLoadImage";
 
 // This is a class-based component because the current
 // version of hot reloading won't hot reload a stateless
@@ -18,6 +19,7 @@ class App extends React.Component {
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route exact path="/dashboard" component={PG_Dashboard} />
+          <Route exact path="/lazyloadimage" component={PG_LazyLoadImage} />
           <Route component={NotFoundPage} />
         </Switch>
       </div>
