@@ -21,5 +21,8 @@ export default {
   },
   progressbar : {
     show : false
+  },
+  navbar : {
+    type : "app"
   }
 };

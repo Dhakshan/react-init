@@ -7,7 +7,6 @@ import * as PBActions from './ProgressBarAction';
 class ProgressBar extends Component {
     constructor(props) {
         super(props)
-        console.log(this.props);
     }
     render() {
         return (

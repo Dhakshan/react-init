@@ -59,9 +59,6 @@ class LoginForm extends Component {
                         <span className="spantxt">Get Inside</span>
                       </button>
                     </div>
-                    <div className="form-group">
-                      <a href={null}>Dasboard</a>
-                    </div>
                 </form>
             )}
         />

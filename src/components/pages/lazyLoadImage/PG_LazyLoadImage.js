@@ -1,6 +1,10 @@
 import React, { Component } from 'react'
-// import PropTypes from 'prop-types'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
+import Navbar from '../../common/navbar/Navbar';
+import * as NavbarActions from '../../common/navbar/NavbarAction';
 
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import '../../../vendor/custom/lazyloadimage.scss';
@@ -18,9 +22,13 @@ class PG_LazyLoadImage extends Component {
             images : LazyLoadImageData
         }
     }
+    componentDidMount(){
+      this.props.NavbarActions.update({type:"app","current_page":"lazyloadimage"});
+    }
     render() {
         return (
-            <div className="home-page">
+            <div className="app-page">
+                <Navbar ></Navbar>
                 <div className="container">
                     <div className="row">
                         <div className="col-12">
@@ -34,7 +42,7 @@ class PG_LazyLoadImage extends Component {
                                     <div className="col-12 col-sm-6 col-smd-4" key={i}>
                                         <div className="image-square">
                                             <p className="myimg img-placeholder" threshold="0" style={{'backgroundImage':'url('+this.state.placeholder_image+')'}}>
-                                                <LazyLoadImage alt={item.alt} threshold="0" delayTime="300" src={'https://picsum.photos/200/200/?image='+i}  />
+                                                <LazyLoadImage alt={item.alt} threshold="0" delayTime="300" useIntersectionObserver="true" src={'https://picsum.photos/200/200/?image='+i}  />
                                             </p>
                                             <span>{item.alt}</span> 
                                         </div>
@@ -50,16 +58,21 @@ class PG_LazyLoadImage extends Component {
 }
 
 PG_LazyLoadImage.propTypes = {
+    NavbarActions : PropTypes.object.isRequired,
 };
   
-function mapStateToProps() {
+function mapStateToProps(state) {
     return {
+        nb : state.navbar
     };
 }
 
-function mapDispatchToProps() {
+function mapDispatchToProps(dispatch) {
     return {
+        NavbarActions : bindActionCreators(NavbarActions,dispatch)
     };
 }
 export default connect(
+    mapStateToProps,
+    mapDispatchToProps
 )(PG_LazyLoadImage);

@@ -2,20 +2,25 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+
 import '../../vendor/custom/pages/home.scss';
 import LoginForm from '../login/LoginForm';
 import * as Actions from '../login/LoginAction';
 import { history } from '../../store/configureStore';
 import * as PBActions from '../common/progressbar/ProgressBarAction';
 import ProgressBar from '../common/progressbar/ProgressBar';
+import Navbar from '../common/navbar/Navbar';
+import * as NavbarActions from '../common/navbar/NavbarAction';
 
 class HomePage extends Component {
-  static propTypes = {
-    prop: PropTypes
-  }
-
+  
   constructor(props){
     super(props)
+    this.state = {
+      navbar : {
+        "type" : "app"
+      }
+    };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -35,10 +40,14 @@ class HomePage extends Component {
           });
       }
   }
+  componentDidMount(){
+    this.props.NavbarActions.update({type:"app","current_page":""});
+  }
 
   render() {
     return (
-      <div className="home-page">
+      <div className="app-page">
+        <Navbar ></Navbar>
         <ProgressBar></ProgressBar>
         <div className="container">
           <div className="row align-items-center justify-content-center mnvh">
@@ -58,20 +67,23 @@ class HomePage extends Component {
 
 HomePage.propTypes = {
   Actions : PropTypes.object.isRequired,
+  NavbarActions : PropTypes.object.isRequired,
   pb : PropTypes.object
 };
 
 function mapStateToProps(state) {
   return {
     login : state.LoginReducer,
-    pb : state.progressbar
+    pb : state.progressbar,
+    nb : state.navbar
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
     Actions : bindActionCreators(Actions,dispatch),
-    PBActions : bindActionCreators(PBActions,dispatch)
+    PBActions : bindActionCreators(PBActions,dispatch),
+    NavbarActions : bindActionCreators(NavbarActions,dispatch)
   };
 }
 export default connect(
