@@ -18,6 +18,10 @@ class Navbar extends Component {
                     {
                         "label" : "Lazy Load Image",
                         "url" : "lazyloadimage"
+                    },
+                    {
+                        "label" : "React Intersection Observer",
+                        "url" : "intersectionobserver"
                     }
                 ]
             }

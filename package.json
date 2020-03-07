@@ -91,6 +91,7 @@
     "prop-types": "15.7.2",
     "raf": "3.4.1",
     "react-hot-loader": "4.12.15",
+    "react-intersection-observer": "8.26.1",
     "react-lazy-load-image-component": "1.4.1",
     "react-test-renderer": "16.11.0",
     "redux-immutable-state-invariant": "2.1.0",
