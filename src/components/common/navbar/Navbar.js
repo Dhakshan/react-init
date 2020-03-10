@@ -22,6 +22,10 @@ class Navbar extends Component {
                     {
                         "label" : "React Intersection Observer",
                         "url" : "intersectionobserver"
+                    },
+                    {
+                        "label" : "Lazy Load Global Component",
+                        "url" : "lazyloadfn"
                     }
                 ]
             }
