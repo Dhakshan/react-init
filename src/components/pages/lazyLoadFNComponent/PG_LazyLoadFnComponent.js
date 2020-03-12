@@ -7,25 +7,7 @@ import { bindActionCreators } from 'redux';
 import Navbar from '../../common/navbar/Navbar';
 import * as NavbarActions from '../../common/navbar/NavbarAction';
 
-// https://www.npmjs.com/package/react-lazy-load-image-component
-import { LazyLoadImage } from 'react-lazy-load-image-component';
-import '../../../vendor/custom/lazyloadimage.scss';
-
-const LazyLoadImg = ({config}) => {
-    const setConfig = (key)=>{
-        var newObject = {};
-        if(config[key]){
-            newObject[key] = config[key];
-        }
-        return newObject;
-    }
-    return (
-        <LazyLoadImage {...setConfig('src')}  {...setConfig('alt')} {...setConfig('width')} {...setConfig('height')} {...setConfig('wrapperClassName')} {...setConfig('placeholderSrc')} {...setConfig('effect')} {...setConfig('afterLoad')} {...setConfig('beforeLoad')} {...setConfig('delayMethod')} {...setConfig('delayTime')} {...setConfig('threshold')} {...setConfig('useIntersectionObserver')} {...setConfig('visibleByDefault')} {...setConfig('placeholder')} {...setConfig('scrollPosition')} />
-    );
-};
-LazyLoadImg.propTypes = {
-    config:PropTypes.object
-};
+import LazyLoadImg from './LazyLoadImg';
 
 class PG_LazyLoadFnComponent extends Component {
     
@@ -40,7 +22,6 @@ class PG_LazyLoadFnComponent extends Component {
       this.props.NavbarActions.update({type:"app","current_page":"lazyloadfn"});
     }
     render() {
-        
         return (
             <div className="app-page">
                 <Navbar ></Navbar>
@@ -57,7 +38,7 @@ class PG_LazyLoadFnComponent extends Component {
                                 return (
                                     <div className="col-12 col-sm-6 col-smd-4" key={i}>
                                         <p className="p5 radius">
-                                            <LazyLoadImg config={{'src': 'https://picsum.photos/500/400/?image='+i,'placeholderSrc':this.state.placeholderImage,'alt':'Photo '+i, 'threshold':0, 'delayTime':'600', 'width':'100%', 'height':'300px' }}/>
+                                        <LazyLoadImg config={{'src': 'https://picsum.photos/500/400/?image='+i,'placeholderSrc':this.state.placeholderImage,'alt':'Photo '+i, 'threshold':0, 'delayTime':'600', 'width':'100%', 'height':'300px' }}/>
                                         </p>
                                     </div>
                                 )
