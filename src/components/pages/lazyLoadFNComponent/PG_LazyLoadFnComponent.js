@@ -38,7 +38,25 @@ class PG_LazyLoadFnComponent extends Component {
                                 return (
                                     <div className="col-12 col-sm-6 col-smd-4" key={i}>
                                         <p className="p5 radius">
-                                        <LazyLoadImg config={{'src': 'https://picsum.photos/500/400/?image='+i,'placeholderSrc':this.state.placeholderImage,'alt':'Photo '+i, 'threshold':0, 'delayTime':'600', 'width':'100%', 'height':'300px' }}/>
+                                            <LazyLoadImg config={{
+                                                src:'https://picsum.photos/500/400/?image='+i ,
+                                                alt:'Photo '+i,
+                                                placeholderSrc:this.state.placeholderImage,
+                                                threshold:0,
+                                                delayTime:600,
+                                                width:"100%" ,
+                                                height:"400px"}
+                                                }
+                                            />
+                                            {/* <LazyLoadImg 
+                                                src={'https://picsum.photos/500/400/?image='+i} 
+                                                alt={'Photo '+i}
+                                                placeholderSrc={this.state.placeholderImage}
+                                                threshold={0}
+                                                delayTime={600}
+                                                width="100%" 
+                                                height="400px"
+                                            /> */}
                                         </p>
                                     </div>
                                 )
