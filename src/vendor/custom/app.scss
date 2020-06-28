@@ -1,0 +1,52 @@
+@import "bs/functions";
+@import "bs/variables";
+@import "bs/bsvariable";
+$enable-shadows: true;
+@import "bs/mixins";
+@import "app/mixins";
+@import "app/fontfamily";
+@import "app/typography";
+@import "app/common";
+
+
+.app{
+    background-color: $app-bg;
+    color : $app-color;
+}
+$navbarH : 70px;
+.app-page{
+    padding-top : $navbarH+10;
+}
+.app-navbarmain{
+    position: fixed; z-index: 100;
+    top:0; right:0; left:0;
+    background-color : $white;
+    color :$black;
+    max-height:$navbarH;
+    overflow: hidden;
+    @include box-shadow(0 2px 3px rgba($black,.05));
+    .navlist{
+        margin:0 auto; padding:0;
+        li{
+            display: inline-block;
+            a{
+                display: block;
+                padding : 0px 1em;
+                line-height: $navbarH;
+                @include transition_(all .5s ease);
+                &:hover{
+                    background-color : $theme;
+                    color : $white;
+                }
+            }
+            &.active{
+                a{
+                    &,&:hover,&:focus{
+                        background-color : darken($theme,10);
+                        color : $white;
+                    }
+                }
+            }
+        }
+    }
+}

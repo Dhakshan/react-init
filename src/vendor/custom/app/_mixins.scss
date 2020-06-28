@@ -1,0 +1,149 @@
+@mixin opacity($value) {
+    $IEValue: $value*100;
+    opacity: $value;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity="+$IEValue+")";
+    filter: alpha(opacity=$IEValue);
+}
+
+@mixin buttonvariant($background, $color, $border, $hover-background: darken($background, 7.5%), $hover-border: darken($border, 10%), $active-background: darken($background, 10%), $active-border: darken($border, 12.5%)) {
+    background-color: $background;
+    color: $color;
+    border-color: $border;
+    // @include box-shadow($btn-box-shadow);
+    @include hover {
+        color: $color;
+        border-color: $hover-border;
+        background-color : darken($background,10);
+    }
+    &.bopacity{
+        border-color : rgba($border,.5);
+    }
+    &:focus,
+    &.focus {
+        // Avoid using mixin so we can pass custom focus shadow properly
+        box-shadow: none;
+    }
+    // Disabled comes first so active can properly restyle
+    &.disabled,
+    &:disabled {
+        color: $color;
+        background-color: $background;
+        border-color: $border;
+        // Remove CSS gradients if they're enabled
+        @if $enable-gradients {
+            background-image: none;
+        }
+    }
+    &:not(:disabled):not(.disabled):active,
+    &:not(:disabled):not(.disabled).active,
+    .show>&.dropdown-toggle {
+        color: $color;
+        background-color: $active-background;
+        @if $enable-gradients {
+            background-image: none; // Remove the gradient for the pressed/active state
+        }
+        border-color: $active-border;
+        &:focus {
+            // Avoid using mixin so we can pass custom focus shadow properly
+            @if $enable-shadows {
+                box-shadow: $btn-active-box-shadow, 0 0 0 $btn-focus-width rgba(mix(color-yiq($background), $border, 15%), .5);
+            }
+            @else {
+                box-shadow: 0 0 0 $btn-focus-width rgba(mix(color-yiq($background), $border, 15%), .5);
+            }
+        }
+    }
+}
+
+@mixin buttonoutlinevariant($bg,$color,$border, $color-hover: $bg, $active-background: $color, $active-border: $color) {
+    color: $color;
+    border-color: $border;
+    
+    &.bopacity{
+      border-color : rgba($border,.5);
+    }
+  
+    @include hover {
+      color: $color-hover;
+      background-color: $active-background;
+      border-color: $active-border;
+    }
+  
+    &:focus,
+    &.focus {
+      box-shadow: 0 0 0 $btn-focus-width rgba($color, .05);
+    }
+  
+    &.disabled,
+    &:disabled {
+      color: $color;
+      background-color: transparent;
+    }
+  
+    &:not(:disabled):not(.disabled):active,
+    &:not(:disabled):not(.disabled).active,
+    .show > &.dropdown-toggle {
+      color: color-yiq($active-background);
+      background-color: $active-background;
+      border-color: $active-border;
+  
+      &:focus {
+        // Avoid using mixin so we can pass custom focus shadow properly
+        @if $enable-shadows and $btn-active-box-shadow != none {
+          box-shadow: $btn-active-box-shadow, 0 0 0 $btn-focus-width rgba($color, .5);
+        } @else {
+          box-shadow: 0 0 0 $btn-focus-width rgba($color, .5);
+        }
+      }
+    }
+  }
+  
+
+@mixin placeholder($color, $opacity) {
+    &::-webkit-input-placeholder {
+        color: $color;
+        opacity: $opacity;
+    }
+    &:-ms-input-placeholder {
+        color: $color;
+        opacity: $opacity;
+    }
+    &::-ms-input-placeholder {
+        color: $color;
+        opacity: $opacity;
+    }
+    &::placeholder {
+        color: $color;
+        opacity: $opacity;
+    }
+}
+
+@mixin borderradius($radius: $border-radius) {
+    border-radius: $radius;
+    -moz-border-radius: $radius;
+    -webkit-border-radius: $radius;
+}
+
+@mixin direction-radius($direction, $radius) {
+    border-#{$direction}-radius: $radius;
+}
+
+@mixin transition_($prop...) {
+    -webkit-transition: $prop;
+    -moz-transition: $prop;
+    -o-transition: $prop;
+    -ms-transition: $prop;
+    transition: $prop;
+}
+@mixin posfit($pos:absolute,$top:0,$right:0,$bottom:0,$left:0) {
+    position: #{$pos};
+    left:$left; top:$top; bottom:$bottom; right:$right;
+}
+
+@mixin transform_($transforms...) {
+    -moz-transform: $transforms;
+      -o-transform: $transforms;
+     -ms-transform: $transforms;
+ -webkit-transform: $transforms;
+       transform: $transforms;
+}

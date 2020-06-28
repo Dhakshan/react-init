@@ -1,0 +1,61 @@
+.h{
+    height:100%;
+}
+.w{
+    width:100%;
+}
+.mnvh{
+    min-height: 100vh;
+}
+
+.bg.white{
+    background-color: #ffffff;
+}
+
+.button{
+    display:inline-block;
+    padding : 1em 2em;
+    border:0 none;
+    position: relative;
+    &,&:before{
+        @include transition_(all .5s ease);
+    }
+    &:before{
+        content:"";
+        position: absolute;
+        left:0; right:0; top:0; bottom:0;
+        background-color : transparent;
+        z-index: 0;
+    }
+    &:hover{
+        &:before{
+            background-color : rgba($black,.3);
+        }
+    }
+    &:focus,&:active,&.active{
+        &:before{
+            background-color : rgba($black,.5);
+        }
+    }
+    .spantxt{
+        position: relative; z-index: 1;
+    }
+}
+.button.theme{
+    background-color : $theme;
+    color : $theme-color;
+}
+
+.form-error{
+    background-color : #fdf2f2;
+    color : rgba($black,.7);
+    padding : .7em 1em;
+    margin-top : .5em;
+    font-size : .85em;
+}
+.progress-bar.false{
+    display : none;
+}
+a,button{
+    cursor: pointer;
+}
