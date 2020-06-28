@@ -14,7 +14,7 @@ $enable-shadows: true;
     color : $app-color;
 }
 $navbarH : 70px;
-.app-page{
+.app-page:not(.nopad){
     padding-top : $navbarH+10;
 }
 .app-navbarmain{
@@ -25,7 +25,7 @@ $navbarH : 70px;
     max-height:$navbarH;
     overflow: hidden;
     @include box-shadow(0 2px 3px rgba($black,.05));
-    .navlist{
+    .navlist,.nav-user-menu{
         margin:0 auto; padding:0;
         li{
             display: inline-block;
@@ -48,5 +48,10 @@ $navbarH : 70px;
                 }
             }
         }
+    }
+    .nav-user-menu{
+        display: table;
+        margin-right: 0;
+        margin-left: auto;
     }
 }

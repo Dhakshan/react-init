@@ -46,15 +46,13 @@ class HomePage extends Component {
 
   render() {
     return (
-      <div className="app-page">
-        <Navbar ></Navbar>
+      <div className="app-page nopad">
         <ProgressBar></ProgressBar>
         <div className="container">
           <div className="row align-items-center justify-content-center mnvh">
               <div className="col-12 col-sm-8 col-smd-6">
                 <div className="p-5 bg white">
                   <h6 className="font-semibold">Login</h6>
-                  <p>Welcome to Birthday Event Creator</p>
                   <LoginForm onSubmit={this.handleSubmit} />
                 </div>
               </div>

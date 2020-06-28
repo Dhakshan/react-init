@@ -54,7 +54,15 @@
     font-size : .85em;
 }
 .progress-bar.false{
-    display : none;
+    display : none;;
+}
+.progress-bar.true{
+    position: fixed;
+    top : 5%; right:5%;
+    max-width: 80%;
+    min-width: 300px;
+    z-index: 1000;
+    padding : 10px;
 }
 a,button{
     cursor: pointer;

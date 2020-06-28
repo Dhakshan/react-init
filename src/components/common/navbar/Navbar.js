@@ -14,25 +14,37 @@ class Navbar extends Component {
                     {
                         "label" : "Home",
                         "url" : ""
-                    },
-                    {
-                        "label" : "Lazy Load Image",
-                        "url" : "lazyloadimage"
-                    },
-                    {
-                        "label" : "React Intersection Observer",
-                        "url" : "intersectionobserver"
-                    },
-                    {
-                        "label" : "Lazy Load Global Component",
-                        "url" : "lazyloadfn"
                     }
                 ]
+            },
+            "admin" : {
+                "list" : [
+                    {
+                        "label" : "Dashboard",
+                        "url" : "dashboard"
+                    }
+                ],
+                "usermenu" : {
+                    "list" : [
+                        {
+                            "label" : "Logout",
+                            "method" : "logout"
+                        }
+                    ] 
+                }
             }
         }
     }
     goTo(p){
-        history.push(p.item.url);
+        if(p.item.url){
+            history.push(p.item.url);
+        }
+        if(p.item.method && this[p.item.method]){
+            this[p.item.method](p);
+        }
+    }
+    logout(){
+        history.replace('/');
     }
     render() {
         return (
@@ -40,18 +52,36 @@ class Navbar extends Component {
                 <div className="app-navbarmain">
                     <div className="inner">
                         <div className="nav-wrapper">
-                            <ul className="navlist">
-                                {
-                                    (this.state[this.props.nb.type])&&
-                                    this.state[this.props.nb.type].list.map((item,i)=>{
-                                        return (
-                                            <li key={i} className={(item.url==this.props.nb.current_page)?'active':''}>
-                                                <a onClick={this.goTo.bind(this,{item,i})} href={null} title={item.label}>{item.label}</a>
-                                            </li>
-                                        )
-                                    })
-                                }
-                            </ul>
+                            <div className="row align-items-center">
+                                <div className="col">
+                                    <ul className="navlist">
+                                        {
+                                            (this.state[this.props.nb.type])&&
+                                            this.state[this.props.nb.type].list.map((item,i)=>{
+                                                return (
+                                                    <li key={i} className={(item.url==this.props.nb.current_page)?'active':''}>
+                                                        <a onClick={this.goTo.bind(this,{item,i})} href={null} title={item.label}>{item.label}</a>
+                                                    </li>
+                                                )
+                                            })
+                                        }
+                                    </ul>
+                                </div>
+                                <div className="col">
+                                    <ul className="nav-user-menu">
+                                        {
+                                            (this.props.nb.type=="admin")&&
+                                            this.state.admin.usermenu.list.map((item,i)=>{
+                                                return (
+                                                    <li key={i} className={''}>
+                                                        <a onClick={this.goTo.bind(this,{item,i})} href={null} title={item.label}>{item.label}</a>
+                                                    </li>
+                                                )
+                                            })
+                                        }
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
